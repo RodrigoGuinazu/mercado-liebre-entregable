@@ -1,9 +1,17 @@
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const db = require('../db/models');
+const Product = require('../db/models/Product');
 
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
-		res.render('products');
+		db.Product.findAll()
+            .then(products => {
+                res.render('index', {products: products});
+            })
+            .catch(function(error){
+                console.log(error);
+            })
 	},
 
 	// Detail - Detail from one product
