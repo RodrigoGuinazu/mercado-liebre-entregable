@@ -1,6 +1,6 @@
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-const db = require('../db/models');
-const Product = require('../db/models/Product');
+const db = require('../database/models');
+const Product = require('../database/models/Product');
 
 const controller = {
 	// Root - Show all products
