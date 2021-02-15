@@ -2,7 +2,7 @@ module.exports = (sequelize, dataTypes) => {
     let alias = "User";
     let cols = {
         id: {
-            type: dataTypes.INT(10).UNSIGNED,
+            type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
@@ -25,6 +25,8 @@ module.exports = (sequelize, dataTypes) => {
         paranoid: true
     };
     
+    const User = sequelize.define(alias, cols, config);
+
     return User
 }
 
