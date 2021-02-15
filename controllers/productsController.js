@@ -5,13 +5,7 @@ const Product = require('../database/models/Product');
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
-		db.Product.findAll()
-            .then(products => {
-                res.render('index', {products: products});
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+		res.render('index');
 	},
 
 	// Detail - Detail from one product
