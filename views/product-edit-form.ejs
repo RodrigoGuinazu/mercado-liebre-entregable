@@ -31,6 +31,7 @@
 					<div class="col-12 col-md-6">
 						<label for="brand" class="form-label">Marca:</label>
 						<select name="brand" id="brand" class="form-input">
+							<option value="<%= productToEdit.brand_id %>"><%= brands.name %></option> <!-- Mostrar la marca actual -->
 							<% brands.forEach(brand => {%>
 								<option value="<%= brand.id %>"><%= brand.name %></option>
 							<% }); %> 
@@ -39,6 +40,7 @@
 					<div class="col-12 col-md-6">
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input" value="<%= productToEdit.category_id %>">
+							<option value="<%= productToEdit.category_id %>"><%= categories.name %></option> <!-- Mostrar la categoria actual -->
 							<% categories.forEach(category => {%>
 								<option value="<%= category.id %>"><%= category.name %></option>
 							<% }); %> 
