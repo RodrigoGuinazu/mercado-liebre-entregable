@@ -65,12 +65,12 @@ const controller = {
         } else {
 			db.Product.create({
 				title: req.body.title,
+				description: req.body.description,
+				photo: '/images/products/' + req.files[0].filename,
 				price: req.body.price,
-				photo: req.body.photo,
-				brand_id: req.body.brand,
-				category_id: req.body.category,
 				stock: req.body.stock,
-				description: req.body.description
+				brand_id: req.body.brand,
+				category_id: req.body.category
 			})
 			.catch(function(error){
 				console.log(error);
