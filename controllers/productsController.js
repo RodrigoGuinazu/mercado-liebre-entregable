@@ -137,8 +137,18 @@ const controller = {
 	},
 
 	// Delete - Delete one product from DB
-	destroy : (req, res) => {
-		// Do the magic
+	destroy : (req, res, next) => {
+		db.Product.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(
+            res.redirect('/products')
+        )
+		.catch(function(error){
+			console.log(error);
+		})
 	}
 };
 
