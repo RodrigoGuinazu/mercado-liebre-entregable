@@ -31,7 +31,7 @@ const controller = {
 	},
 	
 	// Create -  Method to store
-	store: (req, res) => {
+	store: (req, res, next) => {
 		// Do the magic
 	},
 

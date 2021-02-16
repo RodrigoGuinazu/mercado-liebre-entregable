@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 let multer = require('multer');
+let multerProducts = require('../middlewares/multerProducts');
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
@@ -11,7 +12,7 @@ router.get('/', productsController.index);
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); 
-router.post('/', productsController.store); 
+router.post('/', multerProducts.any(), productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 
