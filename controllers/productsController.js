@@ -49,7 +49,19 @@ const controller = {
 	store: (req, res, next) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-            return res.render('product-create-form', {errors: errors.errors});
+			db.Category.findAll()
+			.then( categories => {
+				db.Brand.findAll()
+				.then(brands => {
+				res.render('product-create-form', {brands: brands, categories: categories, errors: errors.errors});
+				})
+				.catch(function(error){
+				console.log(error);
+				})
+			.catch(function(error){
+				console.log(error);
+			})
+			})
         } else {
 			db.Product.create({
 				title: req.body.title,
