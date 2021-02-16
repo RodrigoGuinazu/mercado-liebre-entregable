@@ -1,6 +1,7 @@
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const db = require('../database/models');
 const Product = require('../database/models/Product');
+const Brand = require('../database/models/Brand');
 
 const controller = {
 	// Root - Show all products
@@ -27,7 +28,13 @@ const controller = {
 
 	// Create - Form to create
 	create: (req, res) => {
-		res.render('product-create-form');
+		db.Brand.findAll()
+		.then(brands => {
+			res.render('product-create-form', {brands: brands});
+		})
+		.catch(function(error){
+			console.log(error);
+		})
 	},
 	
 	// Create -  Method to store
