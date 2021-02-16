@@ -73,7 +73,10 @@ const controller = {
         .then( productToEdit => {
 			db.Brand.findAll()
 			.then(brands => {
-			res.render('product-edit-form', {brands: brands, productToEdit: productToEdit});
+				db.Category.findAll()
+        		.then( categories => {
+					res.render('product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
+				})
 			})
 			.catch(function(error){
 			console.log(error);
