@@ -9,8 +9,14 @@ const controller = {
 	},
 
 	// Detail - Detail from one product
-	detail: (req, res) => {
-		res.render('detail');
+	detail: (req, res, next) => {
+		db.Product.findByPk(req.params.id)
+            .then(productDetail => {
+                res.render('detail', {productDetail: productDetail});
+			})
+			.catch(function(error){
+				console.log(error);
+			})
 	},
 
 	// Create - Form to create
