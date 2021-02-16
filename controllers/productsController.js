@@ -129,10 +129,12 @@ const controller = {
 					id: req.params.id
 				})
 			})
+			.then(
+				res.redirect('/products')
+			)
 			.catch(function(error){
 				console.log(error);
 			})
-			res.redirect('detail')
 		}
 	},
 
