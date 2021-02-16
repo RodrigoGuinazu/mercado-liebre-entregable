@@ -1,4 +1,4 @@
-const {check, body} = require('express-validator');
+const {check} = require('express-validator');
 
 module.exports = [
     check('title').isLength({min:3, max: 100}).withMessage('El titulo debe tener como minimo 3 caracteres y como maximo 100.'),
