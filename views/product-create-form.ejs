@@ -31,6 +31,9 @@
 					<div class="col-12 col-md-6">
 						<label for="brand" class="form-label">Marca:</label>
 						<select name="brand" id="brand" class="form-input">
+							<% brands.forEach(brand => {%>
+								<option value="<%= brand.id %>"><%= brand.name %></option>
+							<% }); %> 
 						</select>
 					</div>
 					<div class="col-12 col-md-6">

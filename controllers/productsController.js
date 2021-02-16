@@ -27,7 +27,7 @@ const controller = {
 	},
 
 	// Create - Form to create
-	create: (req, res, next) => {
+	create: (req, res) => {
 		db.Brand.findAll()
 		.then(brands => {
 			res.render('product-create-form', {brands: brands});

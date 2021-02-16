@@ -13,10 +13,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
-        timestamps: true,
-        createdAt: "created_at",
-        updatedAt: "updated_at",
-        deletedAt: "deleted_at"
+        timestamps: false
     };
 
     const Brand = sequelize.define(alias, cols, config);
