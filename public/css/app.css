@@ -419,6 +419,28 @@ textarea.form-input {
   padding: 15px;
 }
 
+/*====== Errores ======*/
+
+.lista-errores {
+  background-color: #ededed;
+  border: solid #ededed;
+  color: darkorange;
+  font-weight: bolder;
+  align-content: center;
+};
+
+.lista-errores ul {
+  background-color: #ededed;
+};
+
+.fa-exclamation-circle i {
+  min-width: 30px;
+};
+
+div .lista-errores{
+  background-color: #ededed;
+  border: solid #ededed;
+}
 
 
 /*====== Media-Queries ======*/

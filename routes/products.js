@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 let multer = require('multer');
 let multerProducts = require('../middlewares/multerProducts');
+let { check, validationResult, body } = require('express-validator');
+const createProductValidator = require('../middlewares/createProductValidator');
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
@@ -12,7 +14,7 @@ router.get('/', productsController.index);
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); 
-router.post('/', multerProducts.any(), productsController.store); 
+router.post('/', [multerProducts.any(), createProductValidator], productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 

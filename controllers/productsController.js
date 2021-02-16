@@ -2,6 +2,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const db = require('../database/models');
 const Product = require('../database/models/Product');
 const Brand = require('../database/models/Brand');
+let { check, validationResult, body } = require('express-validator');
 
 const controller = {
 	// Root - Show all products
@@ -39,19 +40,24 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res, next) => {
-		db.Product.create({
-			title: req.body.title,
-			price: req.body.price,
-			photo: req.body.photo,
-			brand_id: req.body.brand,
-			category_id: req.body.category,
-			stock: req.body.stock,
-			description: req.body.description
-		})
-		.then()
-		.catch(function(error){
-			console.log(error);
-		})
+		const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.render('product-create-form', {errors: errors.errors});
+        } else {
+			db.Product.create({
+				title: req.body.title,
+				price: req.body.price,
+				photo: req.body.photo,
+				brand_id: req.body.brand,
+				category_id: req.body.category,
+				stock: req.body.stock,
+				description: req.body.description
+			})
+			.catch(function(error){
+				console.log(error);
+			})
+			res.redirect('products');
+		}
 	},
 
 	// Update - Form to edit

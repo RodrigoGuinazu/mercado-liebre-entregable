@@ -13,8 +13,20 @@
 				<h2 class="products-title">Formulario de creación de productos</h2>
 			</div>
 		</div>
+		<div class="lista-errores">
+			<% if (typeof errors != "undefined") { %>
+				<i class="fas fa-exclamation-circle"></i>
+				<ul class="lista-errores ul">
+					<% for (let i = 0; i < errors.length; i++) { %>
+						<li class="lista-errores li">
+							<%= errors[i].msg %>
+						</li>
+					<% } %>
+				</ul>
+			<% } %>
+		</div>
 		<div class="col-12">
-			<form method="POST" action="/prodcts/create" enctype="multipart/form-data"> 
+			<form action="/products" method="POST" enctype="multipart/form-data"> 
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
