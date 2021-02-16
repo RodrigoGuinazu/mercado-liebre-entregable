@@ -27,7 +27,7 @@ const controller = {
 	},
 
 	// Create - Form to create
-	create: (req, res) => {
+	create: (req, res, next) => {
 		db.Brand.findAll()
 		.then(brands => {
 			res.render('product-create-form', {brands: brands});
@@ -39,7 +39,19 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res, next) => {
-		// Do the magic
+		db.Product.create({
+			title: req.body.title,
+			price: req.body.price,
+			photo: req.body.photo,
+			brand_id: req.body.brand,
+			category_id: req.body.category,
+			stock: req.body.stock,
+			description: req.body.description
+		})
+		.then()
+		.catch(function(error){
+			console.log(error);
+		})
 	},
 
 	// Update - Form to edit
