@@ -6,5 +6,4 @@ module.exports = [
     check('brand').isInt().withMessage('Elegi la marca del producto.'),
     check('category').isInt().withMessage('Elegi la categoria del producto.'),
     check('description').isLength({max: 1000}).withMessage('La descripcion no puede tener mas de 1000 caracteres.'),
-    check('stock').isInt({min:1}).withMessage('El stock debe ser al menos 1.'),
 ]

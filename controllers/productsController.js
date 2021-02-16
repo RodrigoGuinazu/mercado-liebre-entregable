@@ -68,7 +68,7 @@ const controller = {
 				description: req.body.description,
 				photo: '/images/products/' + req.files[0].filename,
 				price: req.body.price,
-				stock: req.body.stock,
+				stock: 1,
 				brand_id: req.body.brand,
 				category_id: req.body.category
 			})
@@ -105,7 +105,7 @@ const controller = {
 				.then(brands => {
 					db.Product.findAll()
 					.then(productToEdit => {
-						res.render('product-create-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
+						res.render('product-edit-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
 					})
 				})
 				.catch(function(error){
@@ -124,6 +124,10 @@ const controller = {
 				stock: req.body.stock,
 				brand_id: req.body.brand,
 				category_id: req.body.category
+			},{
+				where: ({
+					id: req.params.id
+				})
 			})
 			.catch(function(error){
 				console.log(error);

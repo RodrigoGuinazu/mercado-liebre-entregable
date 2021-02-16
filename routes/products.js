@@ -14,7 +14,7 @@ router.get('/', productsController.index);
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', productsController.create); 
-router.post('/', [multerProducts.any(), createProductValidator], productsController.store); 
+router.post('/', multerProducts.any(), createProductValidator, productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 
@@ -22,7 +22,7 @@ router.get('/:id', productsController.detail);
 
 /*** EDIT ONE PRODUCT ***/ 
 router.get('/:id/edit', productsController.edit); 
-router.patch('/:id/detail', productsController.update); 
+router.patch('/:id', multerProducts.any(), createProductValidator, productsController.update); 
 
 
 /*** DELETE ONE PRODUCT ***/ 
