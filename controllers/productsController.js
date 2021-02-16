@@ -2,6 +2,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const db = require('../database/models');
 const Product = require('../database/models/Product');
 const Brand = require('../database/models/Brand');
+const Category = require('../database/models/Category');
 let {validationResult} = require('express-validator');
 
 const controller = {
@@ -29,13 +30,19 @@ const controller = {
 
 	// Create - Form to create
 	create: (req, res) => {
-		db.Brand.findAll()
-		.then(brands => {
-			res.render('product-create-form', {brands: brands});
-		})
+		db.Category.findAll()
+        .then( categories => {
+			db.Brand.findAll()
+			.then(brands => {
+			res.render('product-create-form', {brands: brands, categories: categories});
+			})
+			.catch(function(error){
+			console.log(error);
+			})
 		.catch(function(error){
 			console.log(error);
 		})
+        })
 	},
 	
 	// Create -  Method to store
