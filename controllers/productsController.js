@@ -97,7 +97,39 @@ const controller = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
-		// Do the magic
+		const errors = validationResult(req);
+        if(!errors.isEmpty()){
+			db.Category.findAll()
+			.then( categories => {
+				db.Brand.findAll()
+				.then(brands => {
+					db.Product.findAll()
+					.then(productToEdit => {
+						res.render('product-create-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
+					})
+				})
+				.catch(function(error){
+				console.log(error);
+				})
+			.catch(function(error){
+				console.log(error);
+			})
+			})
+        } else {
+			db.Product.update({
+				title: req.body.title,
+				description: req.body.description,
+				photo: '/images/products/' + req.files[0].filename,
+				price: req.body.price,
+				stock: req.body.stock,
+				brand_id: req.body.brand,
+				category_id: req.body.category
+			})
+			.catch(function(error){
+				console.log(error);
+			})
+			res.redirect('detail')
+		}
 	},
 
 	// Delete - Delete one product from DB

@@ -22,7 +22,7 @@ router.get('/:id', productsController.detail);
 
 /*** EDIT ONE PRODUCT ***/ 
 router.get('/:id/edit', productsController.edit); 
-router.patch('/:id', productsController.update); 
+router.patch('/:id/detail', productsController.update); 
 
 
 /*** DELETE ONE PRODUCT ***/ 
