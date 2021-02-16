@@ -64,7 +64,13 @@ const controller = {
 	edit: (req, res) => {
 		db.Product.findByPk(req.params.id)
         .then( productToEdit => {
-            res.render('product-edit-form', {productToEdit: productToEdit})
+			db.Brand.findAll()
+			.then(brands => {
+			res.render('product-edit-form', {brands: brands, productToEdit: productToEdit});
+			})
+			.catch(function(error){
+			console.log(error);
+			})
         })
 	},
 	// Update - Method to update
