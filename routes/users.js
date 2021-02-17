@@ -11,7 +11,7 @@ const usersController = require('../controllers/usersController');
 
 /*** CREATE USER ***/ 
 router.get('/register', usersController.create); 
-router.post('/', createUserValidator, usersController.store); 
+router.post('/register', createUserValidator, usersController.store); 
 
 
 /*** LOGIN ***/ 

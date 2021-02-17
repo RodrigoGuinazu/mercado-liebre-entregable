@@ -15,6 +15,7 @@ const controller = {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
             res.render('register', {errors: errors.errors});
+            console.log(errors)
         }else {
 			db.User.create({
 				email: req.body.email,
