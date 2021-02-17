@@ -70,6 +70,12 @@ const controller = {
     avatar: (req, res) => {
         res.render('avatar')
     },
+
+    // Logout
+    destroy: (req, res) => {
+        req.session.destroy();
+        res.redirect('/')
+    },
 };
 
 module.exports = controller;

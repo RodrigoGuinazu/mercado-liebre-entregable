@@ -25,9 +25,8 @@ router.get('/profile', usersController.profile);
 router.get('/avatar/upload', usersController.avatar); 
 //router.post('/avatar/upload', multerUsers.any(), usersController.); 
 
-
-/*** DELETE USER ***/ 
-//router.delete('/:id', usersController.destroy); 
+/*** Logout ***/ 
+router.get('/logout', usersController.destroy); 
 
 
 module.exports = router;
