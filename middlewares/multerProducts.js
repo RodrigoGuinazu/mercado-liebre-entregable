@@ -10,4 +10,13 @@ let path = require('path');
     },
   })
 
-  module.exports = multer({ storage: storage });
+  module.exports = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+      var ext = path.extname(file.originalname);
+      if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        return cb(new Error('Only images are allowed'))
+      }
+      cb(null, true)
+    }
+  });
