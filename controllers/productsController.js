@@ -136,7 +136,7 @@ const controller = {
 				})
 			})
 			.then(
-				res.redirect('/products')
+				res.redirect(req.params.id)
 			)
 			.catch(function(error){
 				console.log(error);
