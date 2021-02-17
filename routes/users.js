@@ -15,7 +15,7 @@ router.post('/', createUserValidator, usersController.store);
 
 
 /*** LOGIN ***/ 
-//router.get('/:id', usersController.detail); 
+router.get('/login', usersController.login); 
 
 /*** EDIT USER ***/ 
 //router.get('/:id/edit', usersController.edit); 

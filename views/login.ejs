@@ -10,24 +10,24 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Crea tu cuenta</h2>
+				<h2 class="products-title">Ingresa a tu Cuenta</h2>
 			</div>
 		</div>
 		<%- include('partials/errors') %>
 		<div class="col-12">
-			<form action="/users/register" method="POST" enctype="multipart/form-data"> 
+			<form action="/users/login" method="POST" enctype="multipart/form-data"> 
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="email" class="form-label">Email:</label>
-						<input type="email" id="email" name="email" placeholder="Ej: mercado@liebre.com" class="form-input">
+						<input type="email" id="email" name="email" placeholder="Ingresa tu E-mail" class="form-input">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="password" class="form-label">Password:</label>
-						<input type="password" id="password" name="password" placeholder="La password debe tener entre 6 y 9 caracteres" class="form-input">
+						<input type="password" id="password" name="password" placeholder="Ingresa tu Password" class="form-input">
 					</div>
 				</div>
 				<div align="center" style="margin-top: 5px;" class="col-12">
-					<button type="submit" class="buy-now-button">Crea tu cuenta</button>
+					<button type="submit" class="buy-now-button">Ingresa</button>
 				</div>
 			</form>
 		</div>

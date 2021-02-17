@@ -20,18 +20,13 @@ const controller = {
 				email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
 			})
-            .then(
-                res.redirect('index')
-            )
-			.catch(function(error){
-				console.log(error);
-			})
 		}
+        res.redirect('login')
 	},
 
-	// Update - Form to edit
-	edit: (req, res) => {
-
+	// View Login
+	login: (req, res) => {
+        res.render('login');
 	},
 	// Update - Method to update
 	update: (req, res) => {
