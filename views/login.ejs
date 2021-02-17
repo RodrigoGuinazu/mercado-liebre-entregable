@@ -13,7 +13,14 @@
 				<h2 class="products-title">Ingresa a tu Cuenta</h2>
 			</div>
 		</div>
-		<%- include('partials/errors') %>
+		<div class="lista-errores">
+			<% if (typeof errors != "undefined") { %>
+				<i class="fas fa-exclamation-circle"></i>
+				<ul class="lista-errores ul">
+					<%= errors.msg %>
+				</ul>
+			<% } %>
+		</div>
 		<div class="col-12">
 			<form action="/users/login" method="POST"> 
 				<div class="row product-detail">

@@ -53,7 +53,7 @@ const controller = {
                     res.render('login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
                 }
             } else{
-                res.render('login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail no exista en la DB
+                res.render('login', {errors: {msg: "El email que ingresaste no esta registrado en el sitio"}}) // En caso de que el mail no exista en la DB
             }
         })
         .catch(function(error){
