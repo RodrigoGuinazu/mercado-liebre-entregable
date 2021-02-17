@@ -9,20 +9,20 @@ let { check, validationResult, body } = require('express-validator');
 const usersController = require('../controllers/usersController');
 
 /*** CREATE USER ***/ 
-router.get('/create', usersController.create); 
-router.post('/', multerProducts.any(), createProductValidator, usersController.store); 
+router.get('/register', usersController.create); 
+//router.post('/', usersController.store); 
 
 
 /*** LOGIN ***/ 
-router.get('/:id', usersController.detail); 
+//router.get('/:id', usersController.detail); 
 
 /*** EDIT USER ***/ 
-router.get('/:id/edit', usersController.edit); 
-router.patch('/:id', multerProducts.any(), createProductValidator, usersController.update); 
+//router.get('/:id/edit', usersController.edit); 
+//router.patch('/:id', usersController.update); 
 
 
 /*** DELETE USER ***/ 
-router.delete('/:id', usersController.destroy); 
+//router.delete('/:id', usersController.destroy); 
 
 
 module.exports = router;
