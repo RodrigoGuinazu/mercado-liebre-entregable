@@ -3,6 +3,8 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const logger = require('morgan');
+var session = require("express-session");// session
+let authMiddleware = require('./middlewares/authMiddleware.js')// middleware nivel app
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
 
@@ -16,6 +18,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
+app.use(session({                     
+  secret: "una frase secreta",              //
+  resave: false,                            // Session
+  saveUninitialized: true                   //
+}))
+app.use(authMiddleware);                     // Session
 
 // ************ Template Engine - (don't touch) ************
 app.set('view engine', 'ejs');
