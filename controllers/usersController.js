@@ -2,6 +2,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const db = require('../database/models');
 const User = require('../database/models/User');
 let {validationResult} = require('express-validator');
+const bcrypt = require('bcrypt');
 
 const controller = {
 	// Create - Form to create user
@@ -17,7 +18,7 @@ const controller = {
         }else {
 			db.User.create({
 				email: req.body.email,
-                password: req.body.password
+                password: bcrypt.hashSync(req.body.password, 10),
 			})
             .then(
                 res.redirect('index')
@@ -30,7 +31,7 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
-        
+
 	},
 	// Update - Method to update
 	update: (req, res) => {
