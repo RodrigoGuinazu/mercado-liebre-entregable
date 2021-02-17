@@ -4,13 +4,14 @@ const router = express.Router();
 let multer = require('multer');
 let multerUsers = require('../middlewares/multerUsers');
 let { check, validationResult, body } = require('express-validator');
+const createUserValidator = require('../middlewares/createUserValidator');
 
 // ************ Controller Require ************
 const usersController = require('../controllers/usersController');
 
 /*** CREATE USER ***/ 
 router.get('/register', usersController.create); 
-//router.post('/', usersController.store); 
+router.post('/', createUserValidator, usersController.store); 
 
 
 /*** LOGIN ***/ 

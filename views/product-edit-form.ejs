@@ -13,18 +13,7 @@
 				<h2 class="products-title">Estás editando: <i><%= productToEdit.title %></i></h2>
 			</div>
 		</div>
-		<div class="lista-errores">
-			<% if (typeof errors != "undefined") { %>
-				<i class="fas fa-exclamation-circle"></i>
-				<ul class="lista-errores ul">
-					<% for (let i = 0; i < errors.length; i++) { %>
-						<li class="lista-errores li">
-							<%= errors[i].msg %>
-						</li>
-					<% } %>
-				</ul>
-			<% } %>
-		</div>
+		<%- include('partials/errors') %>
 		<div class="col-12">
 			<form action="/products/<%= productToEdit.id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
 				<div class="row product-detail">
