@@ -60,11 +60,6 @@ const controller = {
             console.log(error);
         })
 	},
-
-	// Delete - Delete one product from DB
-	destroy : (req, res) => {
-		// Do the magic
-	}
 };
 
 module.exports = controller;

@@ -89,11 +89,17 @@ const controller = {
         		.then( categories => {
 					res.render('product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
 				})
+				.catch(function(error){
+					console.log(error);
+				})
 			})
 			.catch(function(error){
 			console.log(error);
 			})
         })
+		.catch(function(error){
+			console.log(error);
+		})
 	},
 	// Update - Method to update
 	update: (req, res) => {
