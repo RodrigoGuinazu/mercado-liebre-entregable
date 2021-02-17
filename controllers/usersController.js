@@ -60,6 +60,16 @@ const controller = {
             console.log(error);
         })
 	},
+
+    // Vista perfil de usuario
+    profile: (req, res) => {
+        res.render('profile')
+    },
+
+    // Vista Avatar
+    avatar: (req, res) => {
+        res.render('avatar')
+    },
 };
 
 module.exports = controller;

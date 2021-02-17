@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Formulario de creación'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Tu Perfil</h2>
+			</div>
+		</div>
+		<%- include('partials/errors') %>
+		<div class="col-12">
+			<form action="/users/register" method="POST"> 
+				<div class="row product-detail">
+					<div class="col-12 col-md-6">
+						<label for="email" class="form-label">E-mail: <%= user.email %> </label>
+					</div>
+					<div class="col-12 col-md-6">
+						<label for="photo" class="form-label">.</label>
+					</div>
+				</div>
+				<div align="center" style="margin-top: 5px;" class="col-12">
+					<a href="/users/avatar/upload">Subi una Imagen</a>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>

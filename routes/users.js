@@ -18,9 +18,12 @@ router.post('/register', createUserValidator, usersController.store);
 router.get('/login', usersController.login);
 router.post('/login', usersController.processLogin); 
 
-/*** EDIT USER ***/ 
-//router.get('/:id/edit', usersController.edit); 
-//router.patch('/:id', usersController.update); 
+/*** Perfil ***/ 
+router.get('/profile', usersController.profile); 
+
+/*** Avatar ***/ 
+//router.get('/avatar/upload', usersController.); 
+//router.post('/avatar/upload', multerUsers.any(), usersController.); 
 
 
 /*** DELETE USER ***/ 
