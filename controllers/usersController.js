@@ -21,17 +21,23 @@ const controller = {
 				email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
 			})
+			.then(
+				res.redirect('login')
+			)
+			.catch(function(error){
+				console.log(error);
+			})
 		}
-        res.redirect('login')
+        
 	},
 
 	// View Login
 	login: (req, res) => {
         res.render('login');
 	},
-	// Update - Method to update
-	update: (req, res) => {
-		// Do the magic
+
+	// Login - Logica
+	update: (req, res, next) => {
 	},
 
 	// Delete - Delete one product from DB
