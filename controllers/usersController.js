@@ -37,7 +37,28 @@ const controller = {
 	},
 
 	// Login - Logica
-	update: (req, res, next) => {
+	processLogin: (req, res, next) => {
+		let errors = validationResult(req);
+        db.User.findOne({
+            where: {
+                email: req.body.email,
+            }
+        })
+        .then(user => {
+            if(user){
+                if(bcrypt.compareSync(req.body.password, user.password)){
+                    req.session.user = user;
+                    res.redirect('/');
+                } else{
+                    res.render('login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
+                }
+            } else{
+                res.render('login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail no exista en la DB
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        })
 	},
 
 	// Delete - Delete one product from DB
