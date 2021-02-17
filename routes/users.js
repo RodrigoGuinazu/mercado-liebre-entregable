@@ -22,7 +22,7 @@ router.post('/login', usersController.processLogin);
 router.get('/profile', usersController.profile); 
 
 /*** Avatar ***/ 
-//router.get('/avatar/upload', usersController.); 
+router.get('/avatar/upload', usersController.avatar); 
 //router.post('/avatar/upload', multerUsers.any(), usersController.); 
 
 

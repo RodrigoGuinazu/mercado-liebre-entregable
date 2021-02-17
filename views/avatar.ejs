@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Formulario de creación'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Subi tu Imagen</h2>
+			</div>
+		</div>
+		<%- include('partials/errors') %>
+		<div class="col-12">
+			<form action="/users/profile" style="background-color: white; border-radius: 7px;" method="POST">
+                <div class="col-12 col-md-6">
+                    <label for="photo" class="form-label">Imagen:</label>
+                    <input type="file" id="photo" name="photo" class="form-input-img" required>
+                </div>
+			</form>
+		</div>
+
+	</div>
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>
