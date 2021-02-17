@@ -5,28 +5,29 @@ let multer = require('multer');
 let multerUsers = require('../middlewares/multerUsers');
 let { check, validationResult, body } = require('express-validator');
 const createUserValidator = require('../middlewares/createUserValidator');
+let userMiddleware = require('../middlewares/userMiddleware');
 
 // ************ Controller Require ************
 const usersController = require('../controllers/usersController');
 
 /*** CREATE USER ***/ 
-router.get('/register', usersController.create); 
+router.get('/register', userMiddleware.guest, usersController.create); 
 router.post('/register', createUserValidator, usersController.store); 
 
 
 /*** LOGIN ***/ 
-router.get('/login', usersController.login);
+router.get('/login', userMiddleware.guest, usersController.login);
 router.post('/login', usersController.processLogin); 
 
 /*** Perfil ***/ 
-router.get('/profile', usersController.profile); 
+router.get('/profile', userMiddleware.registered, usersController.profile); 
 
 /*** Avatar ***/ 
-router.get('/avatar/upload', usersController.avatar); 
+router.get('/avatar/upload', userMiddleware.registered, usersController.avatar); 
 //router.post('/avatar/upload', multerUsers.any(), usersController.); 
 
 /*** Logout ***/ 
-router.get('/logout', usersController.destroy); 
+router.get('/logout', userMiddleware.registered,  usersController.destroy); 
 
 
 module.exports = router;
