@@ -72,10 +72,12 @@ const controller = {
 				brand_id: req.body.brand,
 				category_id: req.body.category
 			})
+			.then(product => {
+				res.redirect('/products/' + product.id);
+			})
 			.catch(function(error){
 				console.log(error);
 			})
-			res.redirect('products');
 		}
 	},
 
