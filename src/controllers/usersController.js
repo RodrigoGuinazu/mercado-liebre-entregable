@@ -7,14 +7,14 @@ const bcrypt = require('bcrypt');
 const controller = {
 	// Create - Form to create user
 	create: (req, res, next) => {
-		res.render('users/register');
+		res.render('users/register', {refill:{}});
 	},
 	
 	// Create -  Method to store user
 	store: (req, res) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-            res.render('users/register', {errors: errors.errors});
+            res.render('users/register', {refill:{...req.body}, errors: errors.mapped()});
             console.log(errors)
         }else {
 			db.User.create({
