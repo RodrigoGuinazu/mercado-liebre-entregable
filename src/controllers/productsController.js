@@ -10,7 +10,7 @@ const controller = {
 	index: (req, res) => {
 		db.Product.findAll()
             .then(products => {
-                res.render('products', {products: products});
+                res.render('products/products', {products: products});
             })
             .catch(function(error){
                 console.log(error);
@@ -21,7 +21,7 @@ const controller = {
 	detail: (req, res, next) => {
 		db.Product.findByPk(req.params.id)
             .then(productDetail => {
-                res.render('detail', {productDetail: productDetail});
+                res.render('products/detail', {productDetail: productDetail});
 			})
 			.catch(function(error){
 				console.log(error);
@@ -34,7 +34,7 @@ const controller = {
         .then( categories => {
 			db.Brand.findAll()
 			.then(brands => {
-			res.render('product-create-form', {brands: brands, categories: categories});
+			res.render('products/product-create-form', {brands: brands, categories: categories});
 			})
 			.catch(function(error){
 			console.log(error);
@@ -53,7 +53,7 @@ const controller = {
 			.then( categories => {
 				db.Brand.findAll()
 				.then(brands => {
-				res.render('product-create-form', {brands: brands, categories: categories, errors: errors.errors});
+				res.render('products/product-create-form', {brands: brands, categories: categories, errors: errors.errors});
 				})
 				.catch(function(error){
 				console.log(error);
@@ -87,7 +87,7 @@ const controller = {
 			.then(brands => {
 				db.Category.findAll()
         		.then( categories => {
-					res.render('product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
+					res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
 				})
 				.catch(function(error){
 					console.log(error);
@@ -111,7 +111,7 @@ const controller = {
 				.then(brands => {
 					db.Product.findAll()
 					.then(productToEdit => {
-						res.render('product-edit-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
+						res.render('products/product-edit-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
 					})
 				})
 				.catch(function(error){

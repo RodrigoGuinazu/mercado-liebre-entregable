@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Formulario de creación'}) %>
+<%- include('../partials/head', {title: 'Editando: ' + '¿?'}) %>
 <body>
 	<!-- Header -->
-	<%- include('partials/headerNavbar') %>
+	<%- include('../partials/headerNavbar') %>
 	<!-- /Header -->
 
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Formulario de creación de productos</h2>
+				<h2 class="products-title">Estás editando: <i><%= productToEdit.title %></i></h2>
 			</div>
 		</div>
-		<%- include('partials/errors') %>
+		<%- include('../partials/errors') %>
 		<div class="col-12">
-			<form action="/products" method="POST" enctype="multipart/form-data"> 
+			<form action="/products/<%= productToEdit.id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
-						<label for="name" class="form-label">Nombre del producto:</label>
-						<input type="text" id="name" name="title" placeholder="Ej: Zapatillas Reebok" class="form-input">
+						<label for="title" class="form-label">Nombre del producto:</label>
+						<input type="text" id="title" name="title" placeholder="Ej: Zapatillas Reebok" class="form-input" value="<%= productToEdit.title %>">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="price" class="form-label">Precio del producto:</label>
-						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">
+						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input" value="<%= productToEdit.price %>">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="photo" class="form-label">Imagen:</label>
@@ -32,6 +32,7 @@
 					<div class="col-12 col-md-6">
 						<label for="brand" class="form-label">Marca:</label>
 						<select name="brand" id="brand" class="form-input">
+							<option value="<%= productToEdit.brand_id %>"><%= brands.name %></option> <!-- Mostrar la marca actual -->
 							<% brands.forEach(brand => {%>
 								<option value="<%= brand.id %>"><%= brand.name %></option>
 							<% }); %> 
@@ -39,15 +40,20 @@
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="category" class="form-label">Categoría:</label>
-						<select name="category" id="category" class="form-input">
+						<select name="category" id="category" class="form-input" value="<%= productToEdit.category_id %>">
+							<option value="<%= productToEdit.category_id %>"><%= categories.name %></option> <!-- Mostrar la categoria actual -->
 							<% categories.forEach(category => {%>
 								<option value="<%= category.id %>"><%= category.name %></option>
 							<% }); %> 
 						</select>
 					</div>
+					<div class="col-12 col-md-6">
+						<label for="stock" class="form-label">Stock:</label>
+						<input type="number" id="stock" name="stock" class="form-input" value=<%= productToEdit.stock %>>
+					</div>
 					<div class="col-12">
 						<label for="description" class="form-label">Descipción:</label>
-						<textarea name="description" id="description" class="form-input"></textarea>
+						<textarea name="description" id="description" class="form-input"><%= productToEdit.description %></textarea>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Guardar producto</button>
@@ -60,7 +66,7 @@
 	<!-- /todos los productos -->
 
 	<!-- footer -->
-	<%- include('partials/footer') %>
+	<%- include('../partials/footer') %>
 	<!-- /footer -->
 </body>	
 </html>

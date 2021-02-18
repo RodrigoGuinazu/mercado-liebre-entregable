@@ -7,14 +7,14 @@ const bcrypt = require('bcrypt');
 const controller = {
 	// Create - Form to create user
 	create: (req, res, next) => {
-		res.render('register');
+		res.render('users/register');
 	},
 	
 	// Create -  Method to store user
 	store: (req, res) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-            res.render('register', {errors: errors.errors});
+            res.render('users/register', {errors: errors.errors});
             console.log(errors)
         }else {
 			db.User.create({
@@ -33,7 +33,7 @@ const controller = {
 
 	// View Login
 	login: (req, res) => {
-        res.render('login');
+        res.render('users/login');
 	},
 
 	// Login - Logica
@@ -50,10 +50,10 @@ const controller = {
                     req.session.user = user;
                     res.redirect('/');
                 } else{
-                    res.render('login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
+                    res.render('users/login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
                 }
             } else{
-                res.render('login', {errors: {msg: "El email que ingresaste no esta registrado en el sitio"}}) // En caso de que el mail no exista en la DB
+                res.render('users/login', {errors: {msg: "El email que ingresaste no esta registrado en el sitio"}}) // En caso de que el mail no exista en la DB
             }
         })
         .catch(function(error){
@@ -63,12 +63,12 @@ const controller = {
 
     // Vista perfil de usuario
     profile: (req, res) => {
-        res.render('profile')
+        res.render('users/profile')
     },
 
     // Vista Avatar
     avatar: (req, res) => {
-        res.render('avatar')
+        res.render('users/avatar')
     },
 
     // Logout
