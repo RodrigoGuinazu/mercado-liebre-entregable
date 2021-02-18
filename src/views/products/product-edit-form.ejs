@@ -42,9 +42,6 @@
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input" value="<%= productToEdit.category_id %>">
 							<option value="<%= productToEdit.category_id %>"><%= categories.name %></option> <!-- Mostrar la categoria actual -->
-							<% categories.forEach(category => {%>
-								<option value="<%= category.id %>"><%= category.name %></option>
-							<% }); %> 
 						</select>
 					</div>
 					<div class="col-12 col-md-6">

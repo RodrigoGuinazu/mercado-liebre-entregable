@@ -36,7 +36,7 @@ const controller = {
 
 		Promise.all([brandRequest, categoryRequest])
 		.then(([brands, categories]) => {
-			return res.render('products/product-create-form', {brands, categories})
+			return res.render('products/product-create-form', {brands, categories, refill:{}, errors: []})
 		})
 		.catch(function(error){
 			console.log(error);
@@ -52,7 +52,7 @@ const controller = {
 
 			Promise.all([brandRequest, categoryRequest])
 			.then(([brands, categories]) => {
-				return res.render('products/product-create-form', {brands, categories, errors: errors.mapped()})
+				return res.render('products/product-create-form', {brands, categories, refill:{...req.body}, errors: errors.mapped()})
 			})
 			.catch(function(error){
 				console.log(error);
@@ -84,7 +84,7 @@ const controller = {
 
 		Promise.all([productToEdit, brandRequest, categoryRequest])
 		.then(([productToEdit, brands, categories]) => {
-			return res.render('products/product-edit-form', {refill:{}, brands: brands, categories: categories, productToEdit: productToEdit});
+			return res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
 		})	
 		.catch(function(error){
 			console.log(error);
@@ -100,11 +100,11 @@ const controller = {
 
 			Promise.all([productToEdit, brandRequest, categoryRequest])
 			.then(([productToEdit, brands, categories]) => {
-				return res.render('products/product-edit-form', {refill:{...req.body}, brands: brands, categories: categories, productToEdit: productToEdit});
+				return res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
 			})	
 			.catch(function(error){
 				console.log(error);
-			})
+		})
         } else {
 			db.Product.update({
 				title: req.body.title,
