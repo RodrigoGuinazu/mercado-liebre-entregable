@@ -1,6 +1,6 @@
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-const db = require('../database/models');
-const User = require('../database/models/User');
+const db = require('../../database/models');
+const User = require('../../database/models/User');
 let {validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
 
