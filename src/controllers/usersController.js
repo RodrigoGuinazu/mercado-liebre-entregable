@@ -33,7 +33,7 @@ const controller = {
 
 	// View Login
 	login: (req, res) => {
-        res.render('users/login');
+        res.render('users/login', {refill:{}});
 	},
 
 	// Login - Logica
@@ -50,10 +50,10 @@ const controller = {
                     req.session.user = user;
                     res.redirect('/');
                 } else{
-                    res.render('users/login', {errors: {msg: "Credenciales incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
+                    res.render('users/login', {refill:{...req.body}, errors: {msg: "Credenciales Incorrectas"}}) // En caso de que el mail exista en la DB, pero que las credenciales sean incorrectas
                 }
             } else{
-                res.render('users/login', {errors: {msg: "El email que ingresaste no esta registrado en el sitio"}}) // En caso de que el mail no exista en la DB
+                res.render('users/login', {refill:{...req.body}, errors: {msg: "El email que ingresaste no esta registrado en el sitio"}}) // En caso de que el mail no exista en la DB
             }
         })
         .catch(function(error){
