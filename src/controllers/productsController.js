@@ -4,6 +4,7 @@ const Product = require('../../database/models/Product');
 const Brand = require('../../database/models/Brand');
 const Category = require('../../database/models/Category');
 let {validationResult} = require('express-validator');
+const { promiseImpl } = require('ejs');
 
 const controller = {
 	// Root - Show all products
@@ -30,26 +31,30 @@ const controller = {
 
 	// Create - Form to create
 	create: (req, res) => {
-		db.Category.findAll()
-        .then( categories => {
-			db.Brand.findAll()
-			.then(brands => {
-			res.render('products/product-create-form', {brands: brands, categories: categories});
-			})
-			.catch(function(error){
-			console.log(error);
-			})
+		let brandRequest = db.Brand.findAll();
+		let categoryRequest = db.Category.findAll();
+
+		Promise.all([brandRequest, categoryRequest])
+		.then(([brands, categories]) => {
+			return res.render('products/product-create-form', {brands, categories, refill:{}, errors: []})
+		})
 		.catch(function(error){
 			console.log(error);
 		})
-        })
 	},
 	
 	// Create -  Method to store
 	store: (req, res, next) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-			db.Category.findAll()
+			let brandRequest = db.Brand.findAll();
+			let categoryRequest = db.Category.findAll();
+
+			Promise.all([brandRequest, categoryRequest])
+			.then(([brands, categories]) => {
+				return res.render('products/product-create-form', {brands, categories, refill:{...req.body}, errors: errors.mapped()})
+			})
+			/*db.Category.findAll()
 			.then( categories => {
 				db.Brand.findAll()
 				.then(brands => {
@@ -57,11 +62,11 @@ const controller = {
 				})
 				.catch(function(error){
 				console.log(error);
-				})
+				})*/
 			.catch(function(error){
 				console.log(error);
 			})
-			})
+			//})
         } else {
 			db.Product.create({
 				title: req.body.title,

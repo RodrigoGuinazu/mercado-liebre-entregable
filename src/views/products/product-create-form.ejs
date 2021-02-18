@@ -19,11 +19,11 @@
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
-						<input type="text" id="name" name="title" placeholder="Ej: Zapatillas Reebok" class="form-input">
+						<input type="text" id="name" name="title" placeholder="Ej: Zapatillas Reebok" class="form-input" value="<%= refill.title %>">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="price" class="form-label">Precio del producto:</label>
-						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">
+						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input" value="<%= refill.price %>">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="photo" class="form-label">Imagen:</label>
@@ -33,7 +33,11 @@
 						<label for="brand" class="form-label">Marca:</label>
 						<select name="brand" id="brand" class="form-input">
 							<% brands.forEach(brand => {%>
+								<% if(brand.id == refill.brand) { %>
+									<option selected value="<%= brand.id %>"><%= brand.name %></option>
+								<% } else {%> 
 								<option value="<%= brand.id %>"><%= brand.name %></option>
+								<% } %> 
 							<% }); %> 
 						</select>
 					</div>
@@ -41,13 +45,17 @@
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input">
 							<% categories.forEach(category => {%>
+								<% if(category.id == refill.category) { %>
+									<option selected value="<%= category.id %>"><%= category.name %></option>
+								<% } else{ %> 
 								<option value="<%= category.id %>"><%= category.name %></option>
+								<% } %>
 							<% }); %> 
 						</select>
 					</div>
 					<div class="col-12">
 						<label for="description" class="form-label">Descipción:</label>
-						<textarea name="description" id="description" class="form-input"></textarea>
+						<textarea name="description" id="description" class="form-input"><%= refill.description %></textarea>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="buy-now-button">Guardar producto</button>
