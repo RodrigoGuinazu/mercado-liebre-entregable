@@ -36,7 +36,7 @@ const controller = {
 
 		Promise.all([brandRequest, categoryRequest])
 		.then(([brands, categories]) => {
-			return res.render('products/product-create-form', {brands, categories, refill:{}, errors: []})
+			return res.render('products/product-create-form', {brands, categories})
 		})
 		.catch(function(error){
 			console.log(error);
@@ -52,21 +52,11 @@ const controller = {
 
 			Promise.all([brandRequest, categoryRequest])
 			.then(([brands, categories]) => {
-				return res.render('products/product-create-form', {brands, categories, refill:{...req.body}, errors: errors.mapped()})
+				return res.render('products/product-create-form', {brands, categories, errors: errors.mapped()})
 			})
-			/*db.Category.findAll()
-			.then( categories => {
-				db.Brand.findAll()
-				.then(brands => {
-				res.render('products/product-create-form', {brands: brands, categories: categories, errors: errors.errors});
-				})
-				.catch(function(error){
-				console.log(error);
-				})*/
 			.catch(function(error){
 				console.log(error);
 			})
-			//})
         } else {
 			db.Product.create({
 				title: req.body.title,
@@ -88,22 +78,14 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
-		db.Product.findByPk(req.params.id)
-        .then( productToEdit => {
-			db.Brand.findAll()
-			.then(brands => {
-				db.Category.findAll()
-        		.then( categories => {
-					res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
-				})
-				.catch(function(error){
-					console.log(error);
-				})
-			})
-			.catch(function(error){
-			console.log(error);
-			})
-        })
+		let productToEdit = db.Product.findByPk(req.params.id)
+		let brandRequest = db.Brand.findAll();
+		let categoryRequest = db.Category.findAll();
+
+		Promise.all([productToEdit, brandRequest, categoryRequest])
+		.then(([productToEdit, brands, categories]) => {
+			return res.render('products/product-edit-form', {refill:{}, brands: brands, categories: categories, productToEdit: productToEdit});
+		})	
 		.catch(function(error){
 			console.log(error);
 		})
@@ -112,21 +94,16 @@ const controller = {
 	update: (req, res) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-			db.Category.findAll()
-			.then( categories => {
-				db.Brand.findAll()
-				.then(brands => {
-					db.Product.findAll()
-					.then(productToEdit => {
-						res.render('products/product-edit-form', {brands: brands, categories: categories, errors: errors.errors, productToEdit: productToEdit});
-					})
-				})
-				.catch(function(error){
-				console.log(error);
-				})
+			let productToEdit = db.Product.findByPk(req.params.id)
+			let brandRequest = db.Brand.findAll();
+			let categoryRequest = db.Category.findAll();
+
+			Promise.all([productToEdit, brandRequest, categoryRequest])
+			.then(([productToEdit, brands, categories]) => {
+				return res.render('products/product-edit-form', {refill:{...req.body}, brands: brands, categories: categories, productToEdit: productToEdit});
+			})	
 			.catch(function(error){
 				console.log(error);
-			})
 			})
         } else {
 			db.Product.update({
