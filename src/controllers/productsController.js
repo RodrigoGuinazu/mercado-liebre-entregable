@@ -84,7 +84,7 @@ const controller = {
 
 		Promise.all([productToEdit, brandRequest, categoryRequest])
 		.then(([productToEdit, brands, categories]) => {
-			return res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
+			return res.render('products/product-edit-form', {refill: productToEdit, brands: brands, categories: categories, productToEdit: productToEdit});
 		})	
 		.catch(function(error){
 			console.log(error);
@@ -100,7 +100,7 @@ const controller = {
 
 			Promise.all([productToEdit, brandRequest, categoryRequest])
 			.then(([productToEdit, brands, categories]) => {
-				return res.render('products/product-edit-form', {brands: brands, categories: categories, productToEdit: productToEdit});
+				return res.render('products/product-edit-form', {refill:{...req.body, id:productToEdit.id}, brands: brands, categories: categories, productToEdit: productToEdit});
 			})	
 			.catch(function(error){
 				console.log(error);
