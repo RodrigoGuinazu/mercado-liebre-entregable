@@ -92,6 +92,7 @@ const controller = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
+
 		const errors = validationResult(req);
 
         if(!errors.isEmpty()){
@@ -107,22 +108,50 @@ const controller = {
 				console.log(error);
 		})
         } else {
-			db.Product.update({
-				title: req.body.title,
-				description: req.body.description,
-				photo: '/images/products/' + req.files[0].filename,
-				price: req.body.price,
-				stock: req.body.stock,
-				brand_id: req.body.brand,
-				category_id: req.body.category
-			},{
-				where: ({
-					id: req.params.id
-				})
+			db.Product.findByPk(req.params.id)
+			.then(product => {
+				if(req.files.length == 0){
+					db.Product.update({
+						title: req.body.title,
+						description: req.body.description,
+						photo: product.photo,
+						price: req.body.price,
+						stock: req.body.stock,
+						brand_id: req.body.brand,
+						category_id: req.body.category
+					},{
+						where: ({
+							id: req.params.id
+						})
+					})
+					.then(
+						res.redirect(req.params.id)
+					)
+					.catch(function(error){
+						console.log(error);
+					})
+				} else {
+					db.Product.update({
+						title: req.body.title,
+						description: req.body.description,
+						photo: '/images/products/' + req.files[0].filename,
+						price: req.body.price,
+						stock: req.body.stock,
+						brand_id: req.body.brand,
+						category_id: req.body.category
+					},{
+						where: ({
+							id: req.params.id
+						})
+					})
+					.then(
+						res.redirect(req.params.id)
+					)
+					.catch(function(error){
+						console.log(error);
+					})
+				}
 			})
-			.then(
-				res.redirect(req.params.id)
-			)
 			.catch(function(error){
 				console.log(error);
 			})
