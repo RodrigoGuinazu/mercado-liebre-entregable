@@ -101,7 +101,7 @@ const controller = {
 
 			Promise.all([productToEdit, brandRequest, categoryRequest])
 			.then(([productToEdit, brands, categories]) => {
-				return res.render('products/product-edit-form', {refill:{...req.body, id:productToEdit.id}, brands: brands, categories: categories, productToEdit: productToEdit});
+				return res.render('products/product-edit-form', {refill:{...req.body, id:productToEdit.id}, brands: brands, categories: categories, productToEdit: productToEdit, errors: errors.errors});
 			})	
 			.catch(function(error){
 				console.log(error);

@@ -13,27 +13,18 @@
 				<h2 class="products-title">Formulario de creación de productos</h2>
 			</div>
 		</div>
+		<%- include('../partials/errors') %>
 		<div class="col-12">
 			<form action="/products" method="POST" enctype="multipart/form-data"> 
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
-						<% if (typeof errors != "undefined") { %>
-							<ul class="lista-errores ul">
-								<i class="fas fa-exclamation-circle"></i><%= errors[0].msg %>
-							</ul>
-						<% } %>
 						<input type="text" id="name" name="title" placeholder="Ej: Zapatillas Reebok" class="form-input" value="<%= refill.title %>">
 						<div class="lista-errores">
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="price" class="form-label">Precio del producto:</label>
-						<% if (typeof errors != "undefined") { %>
-							<ul class="lista-errores ul">
-								<i class="fas fa-exclamation-circle"></i><%= errors[1].msg %>
-							</ul>
-						<% } %>
 						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input" value="<%= refill.price %>">
 					</div>
 					<div class="col-12 col-md-6">
@@ -66,11 +57,6 @@
 					</div>
 					<div class="col-12">
 						<label for="description" class="form-label">Descipción:</label>
-						<% if (typeof errors != "undefined") { %>
-							<ul class="lista-errores ul">
-								<i class="fas fa-exclamation-circle"></i><%= errors[2].msg %>
-							</ul>
-						<% } %>
 						<textarea name="description" id="description" class="form-input"><%= refill.description %></textarea>
 					</div>
 					<div class="col-12">
