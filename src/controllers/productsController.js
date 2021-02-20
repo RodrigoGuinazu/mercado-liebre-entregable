@@ -63,7 +63,7 @@ const controller = {
 				description: req.body.description,
 				photo: '/images/products/' + req.files[0].filename,
 				price: req.body.price,
-				stock: 1,
+				stock:  req.body.stock,
 				brand_id: req.body.brand,
 				category_id: req.body.category
 			})
