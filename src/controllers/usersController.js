@@ -14,12 +14,12 @@ const controller = {
 	store: (req, res) => {
 		const errors = validationResult(req);
         if(!errors.isEmpty()){
-            res.render('users/register', {refill:{...req.body}, errors: errors.mapped()});
+            res.render('users/register', {refill:{...req.body}, errors: errors.errors});
             console.log(errors)
         }else {
 			db.User.create({
 				email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
+                password: bcrypt.hashSync(req.body.password, 10)
 			})
 			.then(
 				res.redirect('login')
@@ -68,6 +68,11 @@ const controller = {
 
     // Vista Avatar
     avatar: (req, res) => {
+        res.render('users/avatar')
+    },
+
+    // Vista Avatar
+    avatarUpload: (req, res) => {
         res.render('users/avatar')
     },
 
