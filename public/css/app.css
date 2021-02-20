@@ -422,16 +422,16 @@ textarea.form-input {
 /*====== Errores ======*/
 
 .lista-errores {
-  background-color: #ededed;
-  border: solid #ededed;
+  background-color: transparent;
+  border: solid transparent;
   color: darkorange;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: bolder;
   align-content: center;
 };
 
 .lista-errores ul {
-  background-color: #ededed;
+  background-color: transparent;
 };
 
 .fa-exclamation-circle i {
@@ -439,8 +439,8 @@ textarea.form-input {
 };
 
 div .lista-errores{
-  background-color: #ededed;
-  border: solid #ededed;
+  background-color: transparent;
+  border: solid transparent;
 }
 
 

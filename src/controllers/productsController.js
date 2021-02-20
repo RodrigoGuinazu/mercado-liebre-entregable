@@ -36,7 +36,7 @@ const controller = {
 
 		Promise.all([brandRequest, categoryRequest])
 		.then(([brands, categories]) => {
-			return res.render('products/product-create-form', {brands, categories, refill:{}, errors: []})
+			return res.render('products/product-create-form', {brands, categories, refill:{}})
 		})
 		.catch(function(error){
 			console.log(error);
@@ -52,7 +52,7 @@ const controller = {
 
 			Promise.all([brandRequest, categoryRequest])
 			.then(([brands, categories]) => {
-				return res.render('products/product-create-form', {brands, categories, refill:{...req.body}, errors: errors.mapped()})
+				return res.render('products/product-create-form', {brands, categories, refill:{...req.body}, errors: errors.errors})
 			})
 			.catch(function(error){
 				console.log(error);
@@ -93,6 +93,7 @@ const controller = {
 	// Update - Method to update
 	update: (req, res) => {
 		const errors = validationResult(req);
+
         if(!errors.isEmpty()){
 			let productToEdit = db.Product.findByPk(req.params.id)
 			let brandRequest = db.Brand.findAll();
