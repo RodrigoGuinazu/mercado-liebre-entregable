@@ -32,7 +32,11 @@
 					<div class="col-12 col-md-6">
 						<label for="brand" class="form-label">Marca:</label>
 						<select name="brand" id="brand" class="form-input">
-							<option value="<%= refill.brand_id %>"><%= brands.name %></option> <!-- Mostrar la marca actual -->
+							<% brands.forEach(brand => { %>
+								<% if(brand.id == productToEdit.brand_id) { %>
+									<option value="<%= brand.id %>"><%= brand.name %></option> <!-- Mostrar la marca actual -->
+								<% } %>
+							<% }) %> 
 							<% brands.forEach(brand => {%>
 								<option value="<%= brand.id %>"><%= brand.name %></option>
 							<% }); %> 
@@ -41,7 +45,11 @@
 					<div class="col-12 col-md-6">
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input" value="<%= refill.category_id %>">
-							<option value="<%= refill.category_id %>"><%= categories.name %></option> <!-- Mostrar la categoria actual -->
+							<% categories.forEach(category => { %>
+								<% if(category.id == productToEdit.category_id) { %>
+									<option value="<%= category.id %>"><%= category.name %></option> <!-- Mostrar la categoria actual -->
+								<% } %> 
+							<% }) %> 
 						</select>
 					</div>
 					<div class="col-12 col-md-6">
