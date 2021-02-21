@@ -15,11 +15,15 @@
 		</div>
 		<%- include('../partials/errors') %>
 		<div class="col-12">
-			<form action="/users/profile" style="background-color: white; border-radius: 7px;" method="POST">
+			<form action="/users/profile" style="background-color: white; border-radius: 7px;" method="POST" enctype="multipart/form-data">
                 <div class="col-12 col-md-6">
-                    <label for="photo" class="form-label">Imagen:</label>
-                    <input type="file" id="photo" name="photo" class="form-input-img" required>
+					<br>
+                    <input type="file" id="avatar" name="avatar" class="form-input-img" required>
                 </div>
+				<div align="center" class="col-12">
+					<button type="submit" class="buy-now-button">Cambiar Foto</button>
+				</div>
+				<br>
 			</form>
 		</div>
 

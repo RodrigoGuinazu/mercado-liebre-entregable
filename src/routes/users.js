@@ -24,7 +24,7 @@ router.get('/profile', userMiddleware.registered, usersController.profile);
 
 /*** Avatar ***/ 
 router.get('/avatar/upload', userMiddleware.registered, usersController.avatar); 
-//router.post('/avatar/upload', multerUsers.any(), usersController.); 
+router.post('/profile', multerUsers.any(), usersController.avatarUpload); 
 
 /*** Logout ***/ 
 router.get('/logout', userMiddleware.registered,  usersController.destroy); 

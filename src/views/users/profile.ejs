@@ -18,20 +18,17 @@
 			<form action="/users/register" method="POST"> 
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
-						<img src="<%= user.avatar %>" alt="Foto de perfil">
-					</div>
-					<div class="col-12 col-md-6">
 						<label for="email" class="form-label">E-mail: <%= user.email %> </label>
 					</div>
-					<div class="col-12 col-md-6">
-						<label for="photo" class="form-label">.</label>
+				</div>
+				<div align="center">
+					<div style="max-width: 400px; max-height: 400px;">
+						<label style="font-size: 22px;" for="">Click en la imagen para cambiar tu Foto</label>
+						<a href="/users/avatar/upload"><img src="<%= user.avatar %>" alt="Foto de perfil"></a>
 					</div>
+					<div align="center" style="margin-top: 50px; font-size: x-large; color: white; background-color: crimson; border-radius: 4px; width: 300px;" class="col-12">
+						<a href="/users/logout">Log Out</a>
 				</div>
-				<div align="center" style="margin-top: 25px; font-size: x-large; color: white; background-color: blue; border-radius: 4px; width: 300px;" class="col-12">
-					<a href="/users/avatar/upload">Subi una Imagen</a>
-				</div>
-                <div align="center" style="margin-top: 25px; font-size: x-large; color: white; background-color: crimson; border-radius: 4px; width: 300px;" class="col-12">
-					<a href="/users/logout">Log Out</a>
 				</div>
 			</form>
 		</div>

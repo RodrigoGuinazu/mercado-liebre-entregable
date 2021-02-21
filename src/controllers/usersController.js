@@ -72,8 +72,21 @@ const controller = {
     },
 
     // Vista Avatar
-    avatarUpload: (req, res) => {
-        res.render('users/avatar')
+    avatarUpload: (req, res, next) => {
+        db.User.update({
+            avatar: '/images/users/' + req.files[0].filename
+        },
+        {
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        .then(
+            res.redirect('/users/profile')
+        )
+        .catch(error => {
+            res.send(error)
+        })
     },
 
     // Logout
